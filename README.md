@@ -1,0 +1,48 @@
+# source-collector
+
+本项目收集并整理了适用于不同影视应用的配置文件，方便用户快速导入和使用。
+
+## 文件说明
+
+### 1. 适用于 LibreTV / MoonTV 的配置
+- `config_isadult.json` - 适用于 [LibreTV](https://github.com/LibreSpark/LibreTV) 和 [MoonTV](https://github.com/samqin123/MoonTV)
+- `configplus_isadult.json` - 适用于 [LibreTV](https://github.com/LibreSpark/LibreTV) 和 [MoonTV](https://github.com/samqin123/MoonTV)
+
+### 2. 适用于 OmniBox 的配置
+- `sites_export_2025-0929.json` - 适用于 OmniBox (v1.2.7)
+
+### 3. 适用于 小猫影视 的配置
+- `Sites.json` - 适用于 [小猫影视](https://github.com/waifu-project/movie)
+- `yoyo.json` - 适用于 [小猫影视](https://github.com/waifu-project/movie)
+- `Sites.json`、`yoyo.json`自动更新地址：
+- https://cdn.jsdelivr.net/gh/waifu-project/v1@latest/yoyo.json
+- https://cdn.jsdelivr.net/gh/cuiocean/ZY-Player-Resources/Sites/Sites.json
+
+## 免责声明
+
+请不要在 B站、小红书、微信公众号、抖音、今日头条或其他中国大陆社交平台发布视频或文章宣传本项目，不授权任何"科技周刊/月刊"类项目或站点收录本项目。
+
+本项目仅供学习和个人使用，为避免版权纠纷，请严格遵守相关法律法规。请勿将配置用于商业用途或公开服务。
+
+## 鸣谢
+
+感谢以下项目提供的参考和启发：
+
+- [LibreTV](https://github.com/LibreSpark/LibreTV)
+- [MoonTV](https://github.com/samqin123/MoonTV)
+- [小猫影视](https://github.com/waifu-project/movie)
+
+## TODO 📋
+
+### 进行中 🔄
+1. ✅ 收集并整理各影视应用配置文件
+2. ⚠️ 优化README文档结构
+
+### 后续计划 📝
+1. 🔄 加入自动更新workflow
+2. 📦 增加更多影视应用的配置文件支持
+3. 📄 完善配置文件使用说明文档
+
+## 注意事项
+
+使用前请确保你已了解并接受相关软件的许可协议和使用条款。所有配置文件仅供参考，请自行承担使用风险。
