@@ -1,38 +1,158 @@
-# source-collector
+# 📺 Source-Collector
 
-本项目收集并整理了适用于不同影视应用的配置文件，方便用户快速导入和使用。
+> 视频源收集器 — 收集整理适用于各类影视应用的 JSON 配置文件，支持小猫影视 / LibreTV / OmniBox / DecoTV / LunaTV
 
-## 文件说明
+[![GitHub stars](https://img.shields.io/github/stars/adminlove520/Source-Collector)](https://github.com/adminlove520/Source-Collector/stargazers)
+[![自动更新](https://img.shields.io/badge/自动更新-每日%2023:00-4caf50)](.github/workflows/auto-update-video-sources.yml)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
-### 1. 适用于 LibreTV / MoonTV 的配置
-- `config_isadult.json` - 适用于 [LibreTV](https://github.com/LibreSpark/LibreTV) 和 [MoonTV](https://github.com/samqin123/MoonTV)
-- `configplus_isadult.json` - 适用于 [LibreTV](https://github.com/LibreSpark/LibreTV) 和 [MoonTV](https://github.com/samqin123/MoonTV)
+---
 
-### 2. 适用于 OmniBox 的配置
-- `sites_export_2025-0929.json` - 适用于 OmniBox (v1.2.7)
+## ⚠️ 免责声明
 
-### 3. 适用于 小猫影视 的配置
-- `Sites.json` - 适用于 [小猫影视](https://github.com/waifu-project/movie)
-- `yoyo.json` - 适用于 [小猫影视](https://github.com/waifu-project/movie)
-- `Sites.json`、`yoyo.json`自动更新地址：
-- https://cdn.jsdelivr.net/gh/waifu-project/v1@latest/yoyo.json
-- https://cdn.jsdelivr.net/gh/cuiocean/ZY-Player-Resources/Sites/Sites.json
+- 本项目仅供学习和个人使用，为避免版权纠纷，请严格遵守相关法律法规
+- **请勿**在 B站、小红书、微信公众号、抖音、今日头条等中国大陆社交平台发布相关内容
+- 不授权任何"科技周刊/月刊"类项目或站点收录本项目
 
-> **自动更新说明**：本仓库已配置GitHub Actions工作流，每天23:00会自动从上述URL拉取最新的视频源配置并更新到仓库中，确保配置文件始终保持最新状态。
+---
 
-### 4. 适用于 DecoTV / LunaTV 的配置
-- `video_sources_2025-11-19T09-22-39.json` - 适用于 [DecoTV](https://github.com/Decohererk/DecoTV) 和 [LunaTV](https://github.com/SzeMeng76/LunaTV)
-- `source-2025.11.20.json` - 适用于 [DecoTV](https://github.com/Decohererk/DecoTV) 和 [LunaTV](https://github.com/SzeMeng76/LunaTV) (更新版，包含46个视频源)
+## 🌟 功能特性
 
-## 免责声明
+- **一站式覆盖**：同时收录 LibreTV、MoonTV、小猫影视、OmniBox、DecoTV、LunaTV 等多款影视应用配置
+- **自动更新**：GitHub Actions 每日 23:00 自动从上游拉取最新配置，确保始终可用
+- **脚本工具**：提供 JSON 验证脚本和配置下载工具
+- **Issue 贡献**：支持 GitHub Issue 提交视频源，自动处理 PR
 
-请不要在 B站、小红书、微信公众号、抖音、今日头条或其他中国大陆社交平台发布视频或文章宣传本项目，不授权任何"科技周刊/月刊"类项目或站点收录本项目。
+---
 
-本项目仅供学习和个人使用，为避免版权纠纷，请严格遵守相关法律法规。请勿将配置用于商业用途或公开服务。
+## 📁 配置文件说明
 
-## 鸣谢
+| 文件 | 适用应用 | 视频源数 | 自动更新 |
+|------|---------|---------|---------|
+| `Sites.json` | 小猫影视 / Movie | ~ | ✅ jsdelivr CDN |
+| `yoyo.json` | 小猫影视 / Movie | ~ | ✅ jsdelivr CDN |
+| `config_isadult.json` | LibreTV / MoonTV | ~ | ❌ 手动维护 |
+| `configplus_isadult.json` | LibreTV / MoonTV (Plus) | ~ | ❌ 手动维护 |
+| `sites_export_2025-09-29.json` | OmniBox v1.2.7+ | ~ | ❌ |
+| `source-2025.11.20.json` | DecoTV / LunaTV | 46 | ❌ |
 
-感谢以下项目提供的参考和启发：
+> **注意**：小猫影视已闭源，相关配置文件可能出现异常，正在评估替代方案。
+
+---
+
+## 🚀 快速使用
+
+### 方式一：直接下载
+
+```bash
+# 下载所有配置
+python scripts/download_configs.py
+
+# 下载指定应用配置
+python scripts/download_configs.py --app 小猫影视 --outdir ~/movie-sources
+```
+
+### 方式二：从 CDN 引用（懒加载）
+
+```javascript
+// JavaScript 示例：懒加载视频源
+const res = await fetch('https://cdn.jsdelivr.net/gh/adminlove520/Source-Collector@latest/yoyo.json');
+const sources = await res.json();
+```
+
+### 方式三：GitHub Raw 链接
+
+```
+https://raw.githubusercontent.com/adminlove520/Source-Collector/main/yoyo.json
+```
+
+---
+
+## 🔍 验证配置文件
+
+```bash
+# 验证所有 JSON 格式和字段完整性
+python scripts/validate_sources.py
+
+# 输出示例：
+# 检查 6 个配置文件...
+# ✅ Sites.json (小猫影视 / Movie) — 45 个视频源
+# ✅ yoyo.json (小猫影视 / Movie) — 38 个视频源
+# ❌ config_isadult.json — JSON 解析错误
+```
+
+---
+
+## 🛠️ 贡献视频源
+
+### 通过 GitHub Issue 提交（推荐）
+
+1. 进入 [新建 Issue](https://github.com/adminlove520/Source-Collector/issues/new/choose)
+2. 选择「视频源提交」模板
+3. 填写 JSON 格式的视频源数据
+4. 提交后系统自动验证并生成 PR
+
+### JSON 格式要求
+
+```json
+{
+  "name": "源名称（必需）",
+  "api": "https://example.com/api（必需）",
+  "key": "标识符（可选）",
+  "detail": "详情页 URL（可选）",
+  "group": "分组（可选）",
+  "disabled": false,
+  "is_adult": false
+}
+```
+
+### 通过 GitHub Actions 自动处理流程
+
+```
+提交 Issue → 自动验证 JSON → 提取信息 → 更新 README → 生成 PR → 回复结果
+```
+
+---
+
+## 🏗️ 本地开发
+
+```bash
+# 克隆仓库
+git clone https://github.com/adminlove520/Source-Collector.git
+cd Source-Collector
+
+# 安装验证工具依赖（仅需标准库，无需额外依赖）
+python scripts/validate_sources.py   # 验证所有配置
+
+# 下载配置到本地
+python scripts/download_configs.py --outdir ./my-sources
+```
+
+---
+
+## 📂 目录结构
+
+```
+Source-Collector/
+├── .github/
+│   ├── ISSUE_TEMPLATE/          # Issue 模板
+│   └── workflows/
+│       ├── auto-update-video-sources.yml   # 每日自动更新
+│       └── process-video-sources.yml        # Issue 提交处理
+├── scripts/
+│   ├── validate_sources.py     # JSON 验证工具
+│   └── download_configs.py      # 配置下载工具
+├── Sites.json                   # 小猫影视
+├── yoyo.json                    # 小猫影视
+├── config_isadult.json          # LibreTV / MoonTV
+├── configplus_isadult.json      # LibreTV / MoonTV (Plus)
+├── sites_export_2025-09-29.json # OmniBox
+└── README.md
+```
+
+---
+
+## 🤝 鸣谢
 
 - [LibreTV](https://github.com/LibreSpark/LibreTV)
 - [MoonTV](https://github.com/samqin123/MoonTV)
@@ -40,53 +160,8 @@
 - [DecoTV](https://github.com/Decohererk/DecoTV)
 - [LunaTV](https://github.com/SzeMeng76/LunaTV)
 
-## TODO 📋
+---
 
-### 进行中 🔄
-1. ✅ 收集并整理各影视应用配置文件
-2. ⚠️ 优化README文档结构
+## 📝 License
 
-### 后续计划 📝
-1. 🔄 加入自动更新workflow
-2. 📦 增加更多影视应用的配置文件支持
-3. 📄 完善配置文件使用说明文档
-
-## 注意事项
-
-使用前请确保你已了解并接受相关软件的许可协议和使用条款。所有配置文件仅供参考，请自行承担使用风险。
-
-## 贡献视频源
-
-本项目支持通过GitHub Issue自动处理新的视频源提交！
-
-### 如何贡献
-
-1. **创建新Issue**：在GitHub仓库页面点击「Issues」→「New issue」
-2. **选择模板**：选择「视频源提交」模板
-3. **填写信息**：
-   - 选择适用的应用范围
-   - 在代码块中粘贴JSON格式的视频源数据
-   - 可选择性提供备注信息
-4. **提交Issue**：点击「Submit new issue」
-
-### 自动处理流程
-
-- 系统会自动验证您提交的JSON格式是否正确
-- 自动提取视频源信息并保存到新文件中
-- 更新README.md以包含新的配置文件信息
-- 提交变更到仓库
-- 在您的Issue下回复处理结果
-
-### JSON格式要求
-
-每个视频源项目应包含以下字段：
-- `name`：视频源名称（必需）
-- `api`：API地址（必需）
-- `key`：标识符（可选，系统会自动生成）
-- `detail`：详情页地址（可选）
-- `disabled`：是否禁用（可选，默认为false）
-- `is_adult`：是否为成人内容（可选，默认为false）
-
-### 其他
-- 已失效
-    - **小猫影视**已闭源，相关配置文件也出现问题，因此在下个版本将考虑移除
+MIT License · adminlove520
